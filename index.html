@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- /Google font -->
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- /Font awesome -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Minefield</title>
+</head>
+<body>
+    
+    <h1 id="title">Minefield</h1>
+
+    <div id="containerForm" class="container-form">
+        
+        <label for="difficult">Insert the difficult of the game </label>
+        <select name="difficult" id="difficult">
+            <option value="" disabled="disabled" selected="selected">Choose</option>
+            <option value="10">Difficult 0 (between 1 and 100)</option>
+            <option value="9">Difficult 1 (between 1 and 81)</option>
+            <option value="7">Difficult 2 (between 1 and 49)</option>
+        </select>
+
+        <div>
+            <button id="create" class="btn">PLAY</button>
+        </div>
+    </div>
+
+    <div id="error" class="container-error">
+        
+    </div>
+
+    <div id="playground" class="playground">
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

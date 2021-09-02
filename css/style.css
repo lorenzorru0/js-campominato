@@ -1,0 +1,108 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Common */
+body {
+    background-color: rgb(230, 230, 230);
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+.remove {
+    display: none;
+}
+.container-error.view,
+.playground.view {
+    opacity: 1;
+}
+
+/* Container form */
+.container-form {
+    width: 60%;
+    background-color: rgb(123, 184, 63);
+    padding: 20px;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px gray;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container-form div {
+    margin-top: 20px;
+    text-align: center;
+}
+.container-form select {
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-left: 5px;
+}
+.btn {
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Container error */
+.container-error {
+    opacity: 0;
+    transition: opacity 0.5s;
+    width: 30%;
+    background-color: rgb(172, 0, 0);
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px gray;
+    text-align: center;
+}
+
+/* Playground */
+.playground {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.width-7 {
+    width: 700px;
+}
+.width-9 {
+    width: 900px;
+}
+.width-10 {
+    width: 1000px;
+}
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    background-color: green;
+    color: #fff;
+    font-size: 2rem;
+}
+.clicked {
+    color: #fff;
+    background-color: red;
+}
+.fas {
+    color: #000;
+}
+
+
+
+/* Effetti hover */
+.btn:hover {
+    background-color: lightgray;
+}
