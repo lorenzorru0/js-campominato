@@ -40,11 +40,10 @@ function createPlayground(difficult) {
     playground.classList.add(width);
     let arrayBomb = addBomb(difficult);
     let y = 0;
-    console.log(arrayBomb);
 
     for (let i = 1; i <= (difficult * difficult); i++) {
         if (i == arrayBomb[y]) {
-            playground.innerHTML += `<div id="square" class="square"><i class="fas fa-bomb"></i></div>`;
+            playground.innerHTML += `<div id="squareBomb" class="square squareBomb"><i class="fas fa-bomb"></i></div>`;
             y++;
         } else {
             playground.innerHTML += `<div id="square" class="square">${i}</div>`;
@@ -64,7 +63,6 @@ buttonCreate.addEventListener(`click`,
         let containerForm = document.getElementById(`containerForm`);
         let error = document.getElementById(`error`);
         let playground = document.getElementById(`playground`);
-        let square = document.getElementById(`square`);
         let score = document.getElementById(`score`);
         let scorePoint = 0;
         let max;
@@ -89,29 +87,47 @@ buttonCreate.addEventListener(`click`,
             }
             playground.addEventListener(`click` , 
                 function(event) {
-                    console.log(event);
                     if (event.target.classList[1] == `clicked`) {
                         alert(`Don't click twice`);
                     } else {
-                        event.target.classList.add(`clicked`);
                         if (isNaN(event.target.innerHTML)) {
+                            event.target.classList.add(`clicked`);
+                            let square = document.getElementById(`square`);
                             score.innerHTML = `
                                 <h2>You lose</h2>
                                 <p>your score is ${scorePoint}</p>
+                                <button id="btnReplay" class="btn">Try again</button>
                             `
+                            let squareBomb = document.getElementsByClassName(`squareBomb`);
+                            for (let i = 0; i < 16; i++) {
+                                squareBomb[i].classList.add(`clicked`);
+                            }
+                            console.log(squareBomb);
                             playground.classList.add(`unclikable`);
                             score.classList.add(`block`);
                             score.classList.add(`view`);
+                            document.getElementById(`btnReplay`).addEventListener(`click` ,
+                                function() {
+                                    location.reload();
+                                }
+                            );
                         } else {
+                            event.target.classList.add(`clicked-number`);
                             if (scorePoint == (max - 17)) {
                                 score.classList.add(`win`);
                                 score.innerHTML = `
                                     <h2>You win</h2>
                                     <p>Your score is ${scorePoint}</p>
+                                    <button id="btnReplay" class="btn">Replay</button>
                                 `
                                 playground.classList.add(`unclikable`);
                                 score.classList.add(`block`);
                                 score.classList.add(`view`);
+                                document.getElementById(`btnReplay`).addEventListener(`click`,
+                                    function () {
+                                        location.reload();
+                                    }
+                                );
                             } else {
                                 scorePoint++;
                             }
