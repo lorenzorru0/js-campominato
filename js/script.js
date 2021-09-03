@@ -8,7 +8,6 @@ function addBomb (difficult) {
     let arrayRandom = [];
     let bombNumber = 16;
     let randomNum;
-    let square = document.getElementById(`square`);
 
     switch(difficult) {
         case 10:
@@ -40,10 +39,10 @@ function createPlayground(difficult) {
     let width = `width-${difficult}`;
     playground.classList.add(width);
     let arrayBomb = addBomb(difficult);
+    let y = 0;
     console.log(arrayBomb);
 
     for (let i = 1; i <= (difficult * difficult); i++) {
-        let y = 0;
         if (i == arrayBomb[y]) {
             playground.innerHTML += `<div id="square" class="square"><i class="fas fa-bomb"></i></div>`;
             y++;
@@ -51,7 +50,7 @@ function createPlayground(difficult) {
             playground.innerHTML += `<div id="square" class="square">${i}</div>`;
         }
     }
-    playground.classList.add(`view`)
+    playground.classList.add(`view`);
 }
 
 
@@ -65,7 +64,10 @@ buttonCreate.addEventListener(`click`,
         let containerForm = document.getElementById(`containerForm`);
         let error = document.getElementById(`error`);
         let playground = document.getElementById(`playground`);
-        let arrayBomb;
+        let square = document.getElementById(`square`);
+        let score = document.getElementById(`score`);
+        let scorePoint = 0;
+        let max;
 
         if (isNaN(difficult)) {
             error.innerHTML = `Error! Choose a difficult`;
@@ -74,13 +76,49 @@ buttonCreate.addEventListener(`click`,
             containerForm.classList.add(`remove`);
             error.classList.add(`remove`);
             createPlayground(difficult);
+            switch (difficult) {
+                case 10:
+                    max = 100;
+                    break;
+                case 9:
+                    max = 81;
+                    break;
+                case 7:
+                    max = 49;
+                    break;
+            }
             playground.addEventListener(`click` , 
                 function(event) {
                     console.log(event);
-                    event.target.classList.toggle(`clicked`);
+                    if (event.target.classList[1] == `clicked`) {
+                        alert(`Don't click twice`);
+                    } else {
+                        event.target.classList.add(`clicked`);
+                        if (isNaN(event.target.innerHTML)) {
+                            score.innerHTML = `
+                                <h2>You lose</h2>
+                                <p>your score is ${scorePoint}</p>
+                            `
+                            playground.classList.add(`unclikable`);
+                            score.classList.add(`block`);
+                            score.classList.add(`view`);
+                        } else {
+                            if (scorePoint == (max - 17)) {
+                                score.classList.add(`win`);
+                                score.innerHTML = `
+                                    <h2>You win</h2>
+                                    <p>Your score is ${scorePoint}</p>
+                                `
+                                playground.classList.add(`unclikable`);
+                                score.classList.add(`block`);
+                                score.classList.add(`view`);
+                            } else {
+                                scorePoint++;
+                            }
+                        }
+                    }
                 }
             );
         }
-        addBomb(difficult);
     }
 );
